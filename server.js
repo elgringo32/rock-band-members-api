@@ -5,21 +5,20 @@ const PORT = 8000
 
 app.use(cors())
 
-const rappers = {
-    '21 savage':{
-        'age': 29,
-        'birthName':'Shéyaa Bin Abraham-Joseph',
-        'birthLocation': 'London, England' 
+const rockBands = {
+    'the beatles':{
+        "1":"John Lennon",
+        "2":"Paul McCartney",
+        "3":"George Harrison",
+        "4":"Ringo Starr"
     },
-    'chance the rapper':{
-        'age': 29,
-        'birthName':'Chancelor Bennett',
-        'birthLocation': 'Chicago, Illinois' 
+    'nirvana':{
+        "1":"Kurt Cobain",
+        "2":"Krist Novoselic",
+        "3":"Dave Grohl",
     },
-    'dylan':{
-        'age': 29,
-        'birthName':'Dylan',
-        'birthLocation': 'Dylan' 
+    'uknown':{
+        'message': "We don't have info on that band"
     }
 }
 
@@ -27,12 +26,12 @@ app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
 
-app.get('/api/:rapperName', (request,response)=>{
-    const rappersName = request.params.rapperName.toLowerCase()
-    if(rappers[rappersName]){
-        response.json(rappers[rappersName])
+app.get('/api/:bandName', (request,response)=>{
+    const bandsName = request.params.bandName.toLowerCase()
+    if(rockBands[bandsName]){
+        response.json(rockBands[bandsName])
     }else{
-        response.json(rappers['dylan'])
+        response.json(rockBands['unknown'])
     }
 })
 
